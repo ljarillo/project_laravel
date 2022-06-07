@@ -1,4 +1,6 @@
-<section class="dash_content_app">
+@extends('admin.master.master')
+@section('content')
+    <section class="dash_content_app">
 
     <header class="dash_content_app_header">
         <h2 class="icon-search">Filtro</h2>
@@ -17,7 +19,7 @@
         </div>
     </header>
 
-    <?php include('filter.php'); ?>
+    @include('admin.users.filter')
 
     <div class="dash_content_app_box">
         <div class="dash_content_app_box_stage">
@@ -44,3 +46,4 @@
         </div>
     </div>
 </section>
+@endsection

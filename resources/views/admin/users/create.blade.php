@@ -1,4 +1,6 @@
-<section class="dash_content_app">
+@extends('admin.master.master')
+@section('content')
+    <section class="dash_content_app">
 
     <header class="dash_content_app_header">
         <h2 class="icon-user-plus">Novo Cliente</h2>
@@ -492,3 +494,4 @@
         </div>
     </div>
 </section>
+@endsection
