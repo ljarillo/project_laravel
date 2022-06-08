@@ -12,7 +12,7 @@
                     <li class="separator icon-angle-right icon-notext"></li>
                     <li><a href="{{ route('admin.users.index') }}">Clientes</a></li>
                     <li class="separator icon-angle-right icon-notext"></li>
-                    <li><a href="{{ route('admin.users.create') }}" class="text-orange">Novo Cliente</a></li>
+                    <li><a href="{{ route('admin.users.edit', ['user' => $user->id]) }}" class="text-orange">{{ $user->name }}</a></li>
                 </ul>
             </nav>
         </div>

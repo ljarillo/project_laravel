@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\Admin\User as UserRequest;
 use App\User;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class UserController extends Controller
@@ -75,6 +74,7 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::where('id', $id)->first();
+
         return view('admin.users.edit',[
             'user' => $user
         ]);
@@ -87,9 +87,19 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UserRequest $request, $id)
     {
-        //
+        $user = User::where('id', $id)->first();
+        $user->setLessorAttribute($request->lessor);
+        $user->setLesseeAttribute($request->lessee);
+        $user->setAdminAttribute($request->admin);
+        $user->setClientAttribute($request->client);
+
+        $user->fill($request->all());
+
+        $user->save();
+
+        return redirect(route('admin.users.index'));
     }
 
     /**
