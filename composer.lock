@@ -4,8 +4,58 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "66ca7343889332c2b8ecca11c251430c",
+    "content-hash": "a7ec818444852b0901c6c3290f22d90f",
     "packages": [
+        {
+            "name": "coffeecode/cropper",
+            "version": "1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/robsonvleite/cropper.git",
+                "reference": "b99dd693a24a8a0ccc8aa3e0343da81464249833"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/robsonvleite/cropper/zipball/b99dd693a24a8a0ccc8aa3e0343da81464249833",
+                "reference": "b99dd693a24a8a0ccc8aa3e0343da81464249833",
+                "shasum": ""
+            },
+            "require": {
+                "ext-gd": "^7.1",
+                "php": "^7.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "CoffeeCode\\Cropper\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Robson V. Leite",
+                    "email": "cursos@upinside.com.br",
+                    "role": "Developer"
+                }
+            ],
+            "description": "It is a easy and simple PHP image cropper and cache thumb manager",
+            "homepage": "http://www.upinside.com.br",
+            "keywords": [
+                "Coffeecode",
+                "image cache",
+                "image crop",
+                "image thumb",
+                "upload"
+            ],
+            "support": {
+                "issues": "https://github.com/robsonvleite/cropper/issues",
+                "source": "https://github.com/robsonvleite/cropper/tree/master"
+            },
+            "time": "2018-10-27T12:57:07+00:00"
+        },
         {
             "name": "dnoegel/php-xdg-base-dir",
             "version": "v0.1.1",

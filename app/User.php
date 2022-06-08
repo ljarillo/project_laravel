@@ -2,9 +2,11 @@
 
 namespace App;
 
+use App\Support\Cropper;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Storage;
 
 class User extends Authenticatable
 {
@@ -74,6 +76,15 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getUrlCoverAttribute()
+    {
+        if(!empty($this->cover)){
+            return Storage::url(Cropper::thumb($this->cover, 500, 500));
+        }
+
+        return '';
+    }
 
     public function setLessorAttribute($value)
     {

@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\Admin\User as UserRequest;
+use App\Support\Cropper;
 use App\User;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -28,7 +30,8 @@ class UserController extends Controller
      */
     public function team()
     {
-        return view('admin.users.team');
+        $users = User::where('admin', 1)->get();
+        return view('admin.users.team', ['users' => $users]);
     }
 
     /**
@@ -51,7 +54,14 @@ class UserController extends Controller
     {
         $userCreate = User::create($request->all());
 
-        dd($userCreate);
+        if(!empty($request->file('cover'))){
+            $userCreate->cover = $request->file('cover')->store('user');
+            $userCreate->save();
+        }
+
+        return redirect()->route('admin.users.edit', [
+            'users' => $userCreate->id
+        ])->with(['color' => 'green', 'message' => 'Cliente cadastrado com sucesso']);
     }
 
     /**
@@ -95,11 +105,26 @@ class UserController extends Controller
         $user->setAdminAttribute($request->admin);
         $user->setClientAttribute($request->client);
 
+        if(!empty($request->file('cover'))){
+            Storage::delete($user->cover);
+            Cropper::flush($user->cover);
+            $user->cover = '';
+        }
+
         $user->fill($request->all());
 
-        $user->save();
+        if(!empty($request->file('cover'))){
+            $user->cover = $request->file('cover')->store('user');
+        }
 
-        return redirect(route('admin.users.index'));
+        if(!$user->save()){
+            return redirect()->back()->withInput()->withErrors();
+        }
+
+
+        return redirect()->route('admin.users.edit', [
+            'users' => $user->id
+        ])->with(['color' => 'green', 'message' => 'Cliente atualizado com sucesso']);
     }
 
     /**
