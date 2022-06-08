@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\Admin\User as UserRequest;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -46,7 +47,9 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
-        dd($request->all());
+        $user = new User();
+        $user->fill($request->all());
+        dd($user->getAttributes(), $request->all());
     }
 
     /**
