@@ -52,7 +52,9 @@ class User extends Authenticatable
         'spouse_place_of_birth',
         'spouse_occupation',
         'spouse_income',
-        'spouse_company_work'
+        'spouse_company_work',
+        'admin',
+        'client'
     ];
 
     /**
@@ -131,6 +133,16 @@ class User extends Authenticatable
     public function setSpouseIncomeAttribute($value)
     {
         $this->attributes['spouse_income'] = floatval($this->convertStringToDouble($value));
+    }
+
+    public function setAdminAttribute($value)
+    {
+        $this->attributes['admin'] = ($value === 'true' || $value === 'on' ? 1 : 0);
+    }
+
+    public function setClientAttribute($value)
+    {
+        $this->attributes['client'] = ($value === 'true' || $value === 'on' ? 1 : 0);
     }
 
     private function clearField(?string $param)
